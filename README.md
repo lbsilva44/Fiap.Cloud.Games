@@ -35,14 +35,16 @@ Este projeto implementa:
 ---
 
 ## 🏗️ Arquitetura
+
 Fiap.Cloud.Games.sln
-├─ Fiap.Cloud.Games.API ← API / Presentation
-│ ├─ Controllers
-│ └─ Extensions, Middlewares
-├─ Fiap.Cloud.Games.Application ← Casos de uso, DTOs, Services
-├─ Fiap.Cloud.Games.Domain ← Entidades, Value Objects, Eventos, Policies
-├─ Fiap.Cloud.Games.Infrastructure← EF Core DbContext, Migrations, Mappings
-└─ Fiap.Cloud.Games.Tests ← Testes unitários e de controller
+├─ Fiap.Cloud.Games.API            ← API / Presentation  
+│  ├─ Controllers  
+│  └─ Extensions, Middlewares  
+├─ Fiap.Cloud.Games.Application    ← Casos de uso, DTOs, Services  
+├─ Fiap.Cloud.Games.Domain         ← Entidades, Value Objects, Eventos, Policies  
+├─ Fiap.Cloud.Games.Infrastructure ← EF Core DbContext, Migrations, Mappings  
+└─ Fiap.Cloud.Games.Tests          ← Testes unitários e de controller  
+
 
 
 ---
