@@ -1,17 +1,12 @@
-﻿using System;
-using Fiap.Cloud.Games.Domain.Entities;
+﻿using Fiap.Cloud.Games.Domain.Entities;
 using FluentAssertions;
-using Microsoft.Extensions.Configuration;
 using Xunit;
-using Fiap.Cloud.Games.API.Controllers;   // para AuthController
-using Fiap.Cloud.Games.Application.DTOs;          // para LoginDTO
-using Microsoft.AspNetCore.Identity;      // para IdentityUser
-using Moq;                                // para Mock<>
 
 namespace Fiap.Cloud.Games.Tests.Domain;
 
 public class UsuarioTests
 {
+    //Teste Entidades
     #region ── Acesso Publico ─────────────────────────────────────────────────────────────
     [Theory]
     [InlineData("Leonardo Silva", "lbsilva44@gmail.com", "Le@156487812335")]

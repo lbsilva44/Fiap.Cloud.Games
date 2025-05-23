@@ -1,19 +1,15 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
-// Ajuste esses namespaces conforme seu projeto:
 using Fiap.Cloud.Games.API.Controllers;       // seu UsuarioController
-using Fiap.Cloud.Games.Application.DTOs;      // RegistroUsuarioDto, LoginUsuarioDto
 using Fiap.Cloud.Games.Application.Interfaces;// IUsuarioService  
 using Fiap.Cloud.Games.Domain.Entities;
 using Fiap.Cloud.Games.Application.DTOs.Usuario;
 
 namespace Fiap.Cloud.Games.Tests.Application
 {
+    //Teste Controller
     public class UsuarioControllerTests
     {
         private readonly Mock<IUsuarioService> _serviceMock;
