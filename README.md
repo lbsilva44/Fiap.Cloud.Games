@@ -59,11 +59,13 @@ Fiap.Cloud.Games.sln
 
 ## 🚀 Instalação & Configuração
 
-1. Clone o repositório  
+1. Clone o repositório
+
 git clone https://github.com/lbsilva44/Fiap.Cloud.Games.git
 cd Fiap.Cloud.Games
 
-2. Configure o appsettings.json em Fiap.Cloud.Games.API:
+3. Configure o appsettings.json em Fiap.Cloud.Games.API:
+
 {
   "ConnectionStrings": {
     "DefaultConnection": "Server=localhost;Database=FiapCloudGamesDb;Trusted_Connection=True;TrustServerCertificate=True;"
