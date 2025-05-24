@@ -53,18 +53,17 @@ Fiap.Cloud.Games.sln
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/download)  
 - SQL Server (ou LocalDB)  
-- (Opcional) Docker para container SQL Server  
+- (Opcional) Docker para container de SQL Server 
 
 ---
 
 ## 🚀 Instalação & Configuração
 
 1. Clone o repositório  
-   ```bash
-   git clone https://github.com/lbsilva44/Fiap.Cloud.Games.git
-   cd Fiap.Cloud.Games
+git clone https://github.com/lbsilva44/Fiap.Cloud.Games.git
+cd Fiap.Cloud.Games
 
-2. Ajuste a connection string e JWT em Fiap.Cloud.Games.API/appsettings.json:
+2. Configure o appsettings.json em Fiap.Cloud.Games.API:
 {
   "ConnectionStrings": {
     "DefaultConnection": "Server=localhost;Database=FiapCloudGamesDb;Trusted_Connection=True;TrustServerCertificate=True;"
@@ -77,6 +76,7 @@ Fiap.Cloud.Games.sln
   }
 }
 
+---
 
  Migrações & Banco de Dados
 
@@ -91,6 +91,8 @@ cd Fiap.Cloud.Games.API
 dotnet run
 API disponível em https://localhost:7026 (ver launchSettings.json).
 
+---
+
 📡 Endpoints Principais
 Usuário & Auth
 | Método | Rota                           | Descrição                       | Permissão        |
@@ -104,6 +106,16 @@ Usuário & Auth
 | PUT    | `/api/Usuario/Ativar/{id}`     | Reativar usuário                | Bearer(Admin)    |
 
 Jogos
+| Método | Rota                           | Descrição                       | Permissão        |
+|--------|--------------------------------|---------------------------------|------------------|
+| POST   | `/api/Usuario/Registrar-se`    | Cadastrar usuário               | Anônimo          |
+| POST   | `/api/Usuario/Login`           | Autenticar e gerar JWT          | Anônimo          |
+| PUT    | `/api/Usuario/Alterar-acesso/{id}` | Alterar role (Admin)        | Bearer(Admin)    |
+| GET    | `/api/Usuario/Tipo-acessos`    | Listar perfis existentes        | Bearer(Admin)    |
+| GET    | `/api/Usuario/Lista-Usuarios`  | Listar todos os usuários        | Bearer(Admin)    |
+| PUT    | `/api/Usuario/Desativar/{id}`  | Desativar usuário               | Bearer(Admin)    |
+| PUT    | `/api/Usuario/Ativar/{id}`     | Reativar usuário                | Bearer(Admin)    |
+
 Método	Rota	Descrição	Permissão
 POST	/api/Jogos	Cadastrar jogo	Bearer(Admin)
 PUT	/api/Jogos/Publicar/{id}	Publicar jogo	Bearer(Admin)
@@ -111,6 +123,17 @@ DELETE	/api/Jogos/{id}	Excluir jogo	Bearer(Admin)
 GET	/api/Jogos	Listar jogos	Bearer(User/Admin)
 
 Promoções
+
+| Método | Rota                           | Descrição                       | Permissão        |
+|--------|--------------------------------|---------------------------------|------------------|
+| POST   | `/api/Usuario/Registrar-se`    | Cadastrar usuário               | Anônimo          |
+| POST   | `/api/Usuario/Login`           | Autenticar e gerar JWT          | Anônimo          |
+| PUT    | `/api/Usuario/Alterar-acesso/{id}` | Alterar role (Admin)        | Bearer(Admin)    |
+| GET    | `/api/Usuario/Tipo-acessos`    | Listar perfis existentes        | Bearer(Admin)    |
+| GET    | `/api/Usuario/Lista-Usuarios`  | Listar todos os usuários        | Bearer(Admin)    |
+| PUT    | `/api/Usuario/Desativar/{id}`  | Desativar usuário               | Bearer(Admin)    |
+| PUT    | `/api/Usuario/Ativar/{id}`     | Reativar usuário                | Bearer(Admin)    |
+
 Método	Rota	Descrição	Permissão
 POST	/api/Promocao	Criar promoção	Bearer(Admin)
 PUT	/api/Promocao/Ativar/{id}	Ativar promoção	Bearer(Admin)
@@ -118,15 +141,29 @@ DELETE	/api/Promocao/{id}	Excluir promoção	Bearer(Admin)
 GET	/api/Promocao	Listar ativas	Bearer(User/Admin)
 
 Biblioteca
+
+| Método | Rota                           | Descrição                       | Permissão        |
+|--------|--------------------------------|---------------------------------|------------------|
+| POST   | `/api/Usuario/Registrar-se`    | Cadastrar usuário               | Anônimo          |
+| POST   | `/api/Usuario/Login`           | Autenticar e gerar JWT          | Anônimo          |
+| PUT    | `/api/Usuario/Alterar-acesso/{id}` | Alterar role (Admin)        | Bearer(Admin)    |
+| GET    | `/api/Usuario/Tipo-acessos`    | Listar perfis existentes        | Bearer(Admin)    |
+| GET    | `/api/Usuario/Lista-Usuarios`  | Listar todos os usuários        | Bearer(Admin)    |
+| PUT    | `/api/Usuario/Desativar/{id}`  | Desativar usuário               | Bearer(Admin)    |
+| PUT    | `/api/Usuario/Ativar/{id}`     | Reativar usuário                | Bearer(Admin)    |
+
 Método	Rota	Descrição	Permissão
 POST	/api/Biblioteca/Adicionar	Adicionar jogo	Bearer(User)
 DELETE	/api/Biblioteca/Remover	Remover jogo	Bearer(User)
 GET	/api/Biblioteca	Listar biblioteca do usuário	Bearer(User)
 
+---
+
 📖 Documentação API
 Swagger UI: https://localhost:7026/swagger/index.html
-
 ReDoc: https://localhost:7026/docs/index.html
+
+---
 
 🔐 Seed de Usuários
 No primeiro startup, são criados automaticamente:
@@ -145,19 +182,18 @@ Senha: Senha@123!
 
 Use essas credenciais em Authorize no Swagger.
 
-✅ Testes
-Na raiz da solução:
+---
 
-bash
-Copiar
-Editar
+✅ Testes
+Na raiz da solução, execute:
+
 dotnet test --logger "console;verbosity=detailed"
-Cobertura:
 
 Testes de Domínio: validações de Usuario e Promocao
 
 Testes de Controller: endpoints de UsuarioController
 
+---
 📚 Links Úteis
 Board Miro (Event Storming & Diagramas):
 https://miro.com/app/board/uXjVIFs8CKc=/
@@ -168,5 +204,9 @@ https://github.com/lbsilva44/Fiap.Cloud.Games
 Documentação DDD & Diagramas:
 (inserir link final)
 
+---
+
 Autor: Leonardo Silva
 Data de Entrega: 03/06/2025
+
+---
