@@ -83,14 +83,19 @@ cd Fiap.Cloud.Games
  Migrações & Banco de Dados
 
  1.Aplique as migrations:
+ 
  cd Fiap.Cloud.Games.Infrastructure
+ 
 dotnet ef database update --startup-project ../Fiap.Cloud.Games.API
 
 2.O banco será criado com as tabelas de Identity, Jogos, Promoções, Biblioteca e Logs.
 
 ▶️ Como Executar
+
 cd Fiap.Cloud.Games.API
+
 dotnet run
+
 API disponível em https://localhost:7026 (ver launchSettings.json).
 
 ---
