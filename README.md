@@ -108,49 +108,25 @@ Usuário & Auth
 Jogos
 | Método | Rota                           | Descrição                       | Permissão        |
 |--------|--------------------------------|---------------------------------|------------------|
-| POST   | `/api/Usuario/Registrar-se`    | Cadastrar usuário               | Anônimo          |
-| POST   | `/api/Usuario/Login`           | Autenticar e gerar JWT          | Anônimo          |
-| PUT    | `/api/Usuario/Alterar-acesso/{id}` | Alterar role (Admin)        | Bearer(Admin)    |
-| GET    | `/api/Usuario/Tipo-acessos`    | Listar perfis existentes        | Bearer(Admin)    |
-| GET    | `/api/Usuario/Lista-Usuarios`  | Listar todos os usuários        | Bearer(Admin)    |
-| PUT    | `/api/Usuario/Desativar/{id}`  | Desativar usuário               | Bearer(Admin)    |
-| PUT    | `/api/Usuario/Ativar/{id}`     | Reativar usuário                | Bearer(Admin)    |
-
-Método	Rota	Descrição	Permissão
-POST	/api/Jogos	Cadastrar jogo	Bearer(Admin)
-PUT	/api/Jogos/Publicar/{id}	Publicar jogo	Bearer(Admin)
-DELETE	/api/Jogos/{id}	Excluir jogo	Bearer(Admin)
-GET	/api/Jogos	Listar jogos	Bearer(User/Admin)
+| POST   | `/api/Jogos`                   | Cadastrar jogo                  | Bearer(Admin)    |
+| PUT    | `/api/Jogos/Publicar/{id}`     | Publicar jogo                   | Bearer(Admin)    |
+| DELETE | `/api/Jogos/{id}`              | Excluir jogo                    | Bearer(Admin)    |
+| GET    | `/api/Jogos`                   | Listar jogos                    | Bearer(Admin)    |
 
 Promoções
-
 | Método | Rota                           | Descrição                       | Permissão        |
 |--------|--------------------------------|---------------------------------|------------------|
-| POST   | `/api/Usuario/Registrar-se`    | Cadastrar usuário               | Anônimo          |
-| POST   | `/api/Usuario/Login`           | Autenticar e gerar JWT          | Anônimo          |
-| PUT    | `/api/Usuario/Alterar-acesso/{id}` | Alterar role (Admin)        | Bearer(Admin)    |
-| GET    | `/api/Usuario/Tipo-acessos`    | Listar perfis existentes        | Bearer(Admin)    |
-| GET    | `/api/Usuario/Lista-Usuarios`  | Listar todos os usuários        | Bearer(Admin)    |
-| PUT    | `/api/Usuario/Desativar/{id}`  | Desativar usuário               | Bearer(Admin)    |
-| PUT    | `/api/Usuario/Ativar/{id}`     | Reativar usuário                | Bearer(Admin)    |
-
-Método	Rota	Descrição	Permissão
-POST	/api/Promocao	Criar promoção	Bearer(Admin)
-PUT	/api/Promocao/Ativar/{id}	Ativar promoção	Bearer(Admin)
-DELETE	/api/Promocao/{id}	Excluir promoção	Bearer(Admin)
-GET	/api/Promocao	Listar ativas	Bearer(User/Admin)
+| POST   | `/api/Promocao`                | Criar promoção                  | Bearer(Admin)    |
+| PUT    | `/api/Promocao/Ativar/{id}`    | Ativar promoção                 | Bearer(Admin)    |
+| DELETE | `/api/Promocao/{id}`           | Excluir promoção                | Bearer(Admin)    |
+| GET    | `/api/Promocao`                | Listar ativas                   | Bearer(User/Admin)|
 
 Biblioteca
-
 | Método | Rota                           | Descrição                       | Permissão        |
 |--------|--------------------------------|---------------------------------|------------------|
-| POST   | `/api/Usuario/Registrar-se`    | Cadastrar usuário               | Anônimo          |
-| POST   | `/api/Usuario/Login`           | Autenticar e gerar JWT          | Anônimo          |
-| PUT    | `/api/Usuario/Alterar-acesso/{id}` | Alterar role (Admin)        | Bearer(Admin)    |
-| GET    | `/api/Usuario/Tipo-acessos`    | Listar perfis existentes        | Bearer(Admin)    |
-| GET    | `/api/Usuario/Lista-Usuarios`  | Listar todos os usuários        | Bearer(Admin)    |
-| PUT    | `/api/Usuario/Desativar/{id}`  | Desativar usuário               | Bearer(Admin)    |
-| PUT    | `/api/Usuario/Ativar/{id}`     | Reativar usuário                | Bearer(Admin)    |
+| POST   | `/api/Biblioteca/Adicionar`    | Adicionar jogo                  | Bearer(User)     |
+| GET    | `/api/Biblioteca`              | Listar biblioteca do usuário    | Bearer(User)     |
+
 
 Método	Rota	Descrição	Permissão
 POST	/api/Biblioteca/Adicionar	Adicionar jogo	Bearer(User)
