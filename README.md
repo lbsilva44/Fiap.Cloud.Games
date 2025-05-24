@@ -174,10 +174,13 @@ Testes de Controller: endpoints de UsuarioController
 
 ---
 📚 Links Úteis
+
 Board Miro (Event Storming & Diagramas):
+
 https://miro.com/app/board/uXjVIFs8CKc=/
 
 Repositório GitHub:
+
 https://github.com/lbsilva44/Fiap.Cloud.Games
 
 Documentação DDD & Diagramas:
