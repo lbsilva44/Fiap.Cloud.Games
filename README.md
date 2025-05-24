@@ -127,16 +127,12 @@ Biblioteca
 | POST   | `/api/Biblioteca/Adicionar`    | Adicionar jogo                  | Bearer(User)     |
 | GET    | `/api/Biblioteca`              | Listar biblioteca do usuário    | Bearer(User)     |
 
-
-Método	Rota	Descrição	Permissão
-POST	/api/Biblioteca/Adicionar	Adicionar jogo	Bearer(User)
-DELETE	/api/Biblioteca/Remover	Remover jogo	Bearer(User)
-GET	/api/Biblioteca	Listar biblioteca do usuário	Bearer(User)
-
 ---
 
 📖 Documentação API
+
 Swagger UI: https://localhost:7026/swagger/index.html
+
 ReDoc: https://localhost:7026/docs/index.html
 
 ---
