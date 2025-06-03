@@ -62,7 +62,6 @@ Fiap.Cloud.Games.sln
 1. Clone o repositório
 
 git clone https://github.com/lbsilva44/Fiap.Cloud.Games.git
-cd Fiap.Cloud.Games
 
 3. Configure o appsettings.json em Fiap.Cloud.Games.API:
 
@@ -101,38 +100,38 @@ API disponível em https://localhost:7026 (ver launchSettings.json).
 ---
 
 📡 Endpoints Principais
+
 Usuário & Auth
-| Método | Rota                           | Descrição                       | Permissão        |
-|--------|--------------------------------|---------------------------------|------------------|
-| POST   | `/api/Usuario/Registrar-se`    | Cadastrar usuário               | Anônimo          |
-| POST   | `/api/Usuario/Login`           | Autenticar e gerar JWT          | Anônimo          |
-| PUT    | `/api/Usuario/Alterar-acesso/{id}` | Alterar role (Admin)        | Bearer(Admin)    |
-| GET    | `/api/Usuario/Tipo-acessos`    | Listar perfis existentes        | Bearer(Admin)    |
-| GET    | `/api/Usuario/Lista-Usuarios`  | Listar todos os usuários        | Bearer(Admin)    |
-| PUT    | `/api/Usuario/Desativar/{id}`  | Desativar usuário               | Bearer(Admin)    |
-| PUT    | `/api/Usuario/Ativar/{id}`     | Reativar usuário                | Bearer(Admin)    |
+| Método | Rota                 | Descrição                       | Permissão         |
+|--------|----------------------|---------------------------------|-------------------|
+| POST   | `/Registrar-se`      | Cadastrar usuário               | Anônimo           |
+| POST   | `/Login`             | Autenticar e gerar JWT          | Anônimo           |
+| PUT    | `/Alterar-acesso/`   | Alterar role (Admin)            | Bearer(Admin)     |
+| GET    | `/Tipo-acessos`      | Listar perfis existentes        | Bearer(Admin)     |
+| GET    | `/Lista-Usuarios`    | Listar todos os usuários        | Bearer(Admin)     |
+| PUT    | `/Desativar-usuario` | Desativar usuário               | Bearer(Admin)     |
+| PUT    | `/Ativar-usuario`    | Reativar usuário                | Bearer(Admin)     |
+| POST   | `/Depositar-saldo`   | Depositar saldo para usuário    | Bearer(User/Admin)|
+| GET    | `/Detalhe-usuario`   | Detalhe  usuário                | Anônimo           |
 
 Jogos
-| Método | Rota                           | Descrição                       | Permissão        |
-|--------|--------------------------------|---------------------------------|------------------|
-| POST   | `/api/Jogos`                   | Cadastrar jogo                  | Bearer(Admin)    |
-| PUT    | `/api/Jogos/Publicar/{id}`     | Publicar jogo                   | Bearer(Admin)    |
-| DELETE | `/api/Jogos/{id}`              | Excluir jogo                    | Bearer(Admin)    |
-| GET    | `/api/Jogos`                   | Listar jogos                    | Bearer(Admin)    |
+| Método | Rota                  | Descrição                      | Permissão        |
+|--------|-----------------------|--------------------------------|------------------|
+| POST   | `/Cadastrar-jogo`     | Cadastrar jogo                 | Bearer(Admin)    |
+| PUT    | `/Publicar-jogo`      | Publicar jogo                  | Bearer(Admin)    |
+| GET    | `/Listar-jogos`       | Listar  jogos                  | Anônimo          |
+| POST   | `/Adquirir-jogo`      | Adquirir jogo                  | Bearer(User/Admin)|
+| GET    | `/Biblioteca-jogos-usuario`| Listar biblioteca usuário | Bearer(User/Admin)|
 
 Promoções
-| Método | Rota                           | Descrição                       | Permissão        |
-|--------|--------------------------------|---------------------------------|------------------|
-| POST   | `/api/Promocao`                | Criar promoção                  | Bearer(Admin)    |
-| PUT    | `/api/Promocao/Ativar/{id}`    | Ativar promoção                 | Bearer(Admin)    |
-| DELETE | `/api/Promocao/{id}`           | Excluir promoção                | Bearer(Admin)    |
-| GET    | `/api/Promocao`                | Listar ativas                   | Bearer(User/Admin)|
-
-Biblioteca
-| Método | Rota                           | Descrição                       | Permissão        |
-|--------|--------------------------------|---------------------------------|------------------|
-| POST   | `/api/Biblioteca/Adicionar`    | Adicionar jogo                  | Bearer(User)     |
-| GET    | `/api/Biblioteca`              | Listar biblioteca do usuário    | Bearer(User)     |
+| Método | Rota                           | Descrição                       | Permissão         |
+|--------|--------------------------------|---------------------------------|-------------------|
+| POST   | `/Criar-Promocao`              | Criar promoção                  | Bearer(Admin)     |
+| POST   | `/Ativar-Promocao`             | Ativar promoção                 | Bearer(Admin)     |
+| POST   | `/Adicinar-Jogo-Promocao`      | Adicionar jogo a promoção       | Bearer(Admin)     |
+| POST   | `/Excluir-Promocao`            | Excluir promoção                | Bearer(Admin)     |
+| GET    | `/Listar-promocao`             | Lista promoção de jogos         | Anônimo           |
+| POST   | `/Adquirir-promocao`           | Adquirir promoção               | Bearer(User/Admin)|
 
 ---
 
@@ -161,7 +160,7 @@ E-mail: user@fcg.com
 
 Senha: Senha@123!
 
-Use essas credenciais em Authorize no Swagger.
+Use essas credenciais em Login para gerar o Token e utilizar no Authorize no Swagger.
 
 ---
 
@@ -184,10 +183,6 @@ https://miro.com/app/board/uXjVIFs8CKc=/
 Repositório GitHub:
 
 https://github.com/lbsilva44/Fiap.Cloud.Games
-
-Documentação DDD & Diagramas:
-
-(inserir link final)
 
 ---
 
