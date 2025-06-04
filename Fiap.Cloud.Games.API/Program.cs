@@ -7,6 +7,8 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.MSSqlServer;
 using Serilog.Formatting.Compact;
+using Fiap.Cloud.Games.Domain.Entities;
+using Fiap.Cloud.Games.Domain.Enums;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -90,6 +92,15 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<BaseDbContext>();
     await db.Database.MigrateAsync();
+    if (!db.Usuarios.Any())
+    {
+        var usuarioAdmin = Usuario.Criar("Admin", "admin@fcg.com", "Admin@123!", 0, "Admin");
+        db.Usuarios.Add(usuarioAdmin);
+
+        var usuarioComum = Usuario.Criar("Usuario", "user@fcg.com", "Senha@123!", 0, "Usuario");
+        db.Usuarios.Add(usuarioComum);
+        await db.SaveChangesAsync();
+    }
 }
 #endregion
 

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fiap.Cloud.Games.Infrastructure.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20250517021440_AddCarteiraAndMovimentos")]
-    partial class AddCarteiraAndMovimentos
+    [Migration("20250604023318_AjusteCommit")]
+    partial class AjusteCommit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,7 +46,9 @@ namespace Fiap.Cloud.Games.Infrastructure.Migrations
 
                     b.HasIndex("JogoId");
 
-                    b.ToTable("Bibliotecas");
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Bibliotecas", (string)null);
                 });
 
             modelBuilder.Entity("Fiap.Cloud.Games.Domain.Entities.Jogo", b =>
@@ -97,6 +99,9 @@ namespace Fiap.Cloud.Games.Infrastructure.Migrations
                     b.Property<DateTimeOffset>("DataHora")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<int?>("JogoId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("SaldoAntes")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
@@ -116,6 +121,8 @@ namespace Fiap.Cloud.Games.Infrastructure.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("JogoId");
 
                     b.HasIndex("UsuarioId");
 
@@ -185,10 +192,6 @@ namespace Fiap.Cloud.Games.Infrastructure.Migrations
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -203,10 +206,18 @@ namespace Fiap.Cloud.Games.Infrastructure.Migrations
                     b.HasOne("Fiap.Cloud.Games.Domain.Entities.Jogo", "Jogo")
                         .WithMany()
                         .HasForeignKey("JogoId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Fiap.Cloud.Games.Domain.Entities.Usuario", "Usuario")
+                        .WithMany("Bibliotecas")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Jogo");
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Fiap.Cloud.Games.Domain.Entities.MovimentoCarteira", b =>
@@ -221,7 +232,7 @@ namespace Fiap.Cloud.Games.Infrastructure.Migrations
             modelBuilder.Entity("Fiap.Cloud.Games.Domain.Entities.PromocaoJogo", b =>
                 {
                     b.HasOne("Fiap.Cloud.Games.Domain.Entities.Jogo", "Jogo")
-                        .WithMany()
+                        .WithMany("PromocaoJogos")
                         .HasForeignKey("JogoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -275,6 +286,25 @@ namespace Fiap.Cloud.Games.Infrastructure.Migrations
                                 .HasForeignKey("UsuarioId");
                         });
 
+                    b.OwnsOne("Fiap.Cloud.Games.Domain.ValueObjects.Nome", "Nome", b1 =>
+                        {
+                            b1.Property<int>("UsuarioId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("Valor")
+                                .IsRequired()
+                                .HasMaxLength(150)
+                                .HasColumnType("nvarchar(150)")
+                                .HasColumnName("Nome");
+
+                            b1.HasKey("UsuarioId");
+
+                            b1.ToTable("Usuarios");
+
+                            b1.WithOwner()
+                                .HasForeignKey("UsuarioId");
+                        });
+
                     b.OwnsOne("Fiap.Cloud.Games.Domain.ValueObjects.Senha", "Senha", b1 =>
                         {
                             b1.Property<int>("UsuarioId")
@@ -299,8 +329,16 @@ namespace Fiap.Cloud.Games.Infrastructure.Migrations
                     b.Navigation("Email")
                         .IsRequired();
 
+                    b.Navigation("Nome")
+                        .IsRequired();
+
                     b.Navigation("Senha")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Fiap.Cloud.Games.Domain.Entities.Jogo", b =>
+                {
+                    b.Navigation("PromocaoJogos");
                 });
 
             modelBuilder.Entity("Fiap.Cloud.Games.Domain.Entities.Promocao", b =>
@@ -310,6 +348,8 @@ namespace Fiap.Cloud.Games.Infrastructure.Migrations
 
             modelBuilder.Entity("Fiap.Cloud.Games.Domain.Entities.Usuario", b =>
                 {
+                    b.Navigation("Bibliotecas");
+
                     b.Navigation("Movimentos");
                 });
 #pragma warning restore 612, 618

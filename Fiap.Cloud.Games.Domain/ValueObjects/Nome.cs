@@ -1,35 +1,30 @@
-﻿
-
-using System.Text.RegularExpressions;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Fiap.Cloud.Games.Domain.ValueObjects
 {
+    /// <summary>
+    /// Value Object para o nome do usuário.
+    /// O atributo [Owned] diz ao EF Core que este tipo é incorporado (não tem chave primária).
+    /// </summary>
+    [Owned]                                 // <- linha fundamental
     public class Nome
     {
-        public string? Valor { get; private set; }
+        public string Valor { get; private set; } = null!;
 
+        // construtor sem parâmetros exigido pelo EF
         protected Nome() { }
 
         public Nome(string valor)
         {
-            try
-            {
-                // Se for nulo, vazio ou só espaços, é inválido
-                if (string.IsNullOrWhiteSpace(valor))
-                    throw new ArgumentException("Nome inválido.", nameof(valor));
+            if (string.IsNullOrWhiteSpace(valor))
+                throw new ArgumentException("Nome inválido.", nameof(valor));
 
-                Valor = valor;
-            }
-            catch
-            {
-                throw new ArgumentException("Nome inválido.");
-            }
-
-            Valor = valor;
+            Valor = valor.Trim();
         }
 
-        public override string ToString() => Valor!;
+        public override string ToString() => Valor;
 
-        public static implicit operator string(Nome nome) => nome.Valor!;
+        // conversão implícita para string
+        public static implicit operator string(Nome nome) => nome.Valor;
     }
 }

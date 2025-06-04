@@ -189,10 +189,6 @@ namespace Fiap.Cloud.Games.Infrastructure.Migrations
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -287,6 +283,25 @@ namespace Fiap.Cloud.Games.Infrastructure.Migrations
                                 .HasForeignKey("UsuarioId");
                         });
 
+                    b.OwnsOne("Fiap.Cloud.Games.Domain.ValueObjects.Nome", "Nome", b1 =>
+                        {
+                            b1.Property<int>("UsuarioId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("Valor")
+                                .IsRequired()
+                                .HasMaxLength(150)
+                                .HasColumnType("nvarchar(150)")
+                                .HasColumnName("Nome");
+
+                            b1.HasKey("UsuarioId");
+
+                            b1.ToTable("Usuarios");
+
+                            b1.WithOwner()
+                                .HasForeignKey("UsuarioId");
+                        });
+
                     b.OwnsOne("Fiap.Cloud.Games.Domain.ValueObjects.Senha", "Senha", b1 =>
                         {
                             b1.Property<int>("UsuarioId")
@@ -309,6 +324,9 @@ namespace Fiap.Cloud.Games.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Email")
+                        .IsRequired();
+
+                    b.Navigation("Nome")
                         .IsRequired();
 
                     b.Navigation("Senha")

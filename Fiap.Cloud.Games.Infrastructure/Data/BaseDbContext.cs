@@ -25,6 +25,14 @@ public class BaseDbContext(DbContextOptions options) : AuditDbContext(options)
         // ----- Usuario com Value Objects -----
         modelBuilder.Entity<Usuario>(builder =>
         {
+            builder.OwnsOne(u => u.Nome, nome =>
+            {
+                nome.Property(n => n.Valor)
+                    .HasColumnName("Nome")
+                    .IsRequired()
+                    .HasMaxLength(150);
+            });
+
             builder.OwnsOne(u => u.Email, email =>
             {
                 email.Property(e => e.Valor)

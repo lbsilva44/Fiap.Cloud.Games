@@ -62,6 +62,7 @@ public class UsuarioService(BaseDbContext context, IJwtService jwtService) : IUs
     public async Task<IEnumerable<UsuarioDto>> ListarUsuarios()
     {
         return await context.Usuarios
+            .AsNoTracking()
             .Select(u => new UsuarioDto
             {
                 Id = u.Id,

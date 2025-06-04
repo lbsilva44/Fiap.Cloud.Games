@@ -70,6 +70,10 @@ public class Usuario
             jogoId: jogo.Id
         ));
     }
+    public static Usuario Criar(string nome, string email, string senha, decimal saldoInicial = 0m, string role = "Usuario")
+    {
+        return new Usuario(nome, email, senha, saldoInicial, role);
+    }
 
     // Compra individual pelo preço original
     public void ComprarJogo(Jogo jogo)=> Comprar(jogo, jogo.Preco);
